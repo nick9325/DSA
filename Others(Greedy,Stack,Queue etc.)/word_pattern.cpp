@@ -18,6 +18,7 @@ public:
                     mp[word]=pattern[k];
                     m[pattern[k]]++;
                 }
+                if(mp.find(word)==mp.end() or mp[word]!=pattern[k]) return false;
                 k++;
                 word="";
             }
@@ -26,23 +27,10 @@ public:
             if(m.find(pattern[k])!=m.end()) return false;
             mp[word]=pattern[k];
         }
+        if(mp.find(word)==mp.end() or mp[word]!=pattern[k]) return false;
         k++;
         if(k!=pattern.size()) return false;
-        word="";
-        k=0;
-
-        for(int i=0;i<s.length();i++){
-            while(s[i]!=' ' and i<s.length()){
-                word+=s[i];
-                i++;
-            }
-            if(s[i]==' '){
-                if(mp.find(word)==mp.end() or mp[word]!=pattern[k]) return false;
-                word="";
-                k++;
-            }
-        }
-        if(mp.find(word)==mp.end() or mp[word]!=pattern[k]) return false;
+      
 
         return true;
         
